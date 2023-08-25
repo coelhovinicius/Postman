@@ -1,0 +1,7 @@
+JSON - Exemplo:
+
+{
+    "nome": "Vinicius",
+    "idade": "41",
+    "id": 1,
+}

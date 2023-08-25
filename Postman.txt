@@ -1,0 +1,68 @@
+Postman
+
+Documentação do negócio (API): Para testes em APIs, é necessário haver a Documentação (Readme, normalmente), para saber como criar os testes.
+
+Neste caso, estamos utilizando API em IntelliJ IDE com Kotlin no local "http://localhost:8080/cliente". Pasta "C:\Users\coelh\Pessoal\TI\CURSOS\Postman\exemplo-API\src\main\kotlin\com\viniciuspessoni", arquivo "Aplicacao.kt".
+
+IntelliJ:
+O IntelliJ IDEA é um ambiente de desenvolvimento integrado (IDE) para desenvolvedores de software. Ele é desenvolvido pela JetBrains e está disponível para Windows, macOS e Linux. O IntelliJ IDEA é um IDE baseado em Java que oferece suporte a uma ampla gama de linguagens de programação, incluindo Java, Kotlin, Python, JavaScript, PHP e C++. Ele também oferece uma variedade de recursos para ajudar os desenvolvedores a serem mais produtivos, incluindo autocompletação de código, refatoração e depuração.
+É uma ferramenta popular entre os desenvolvedores de software e é usado por empresas de todos os tamanhos. Ele é conhecido por sua velocidade, estabilidade e recursos poderosos.
+Possui alguns recursos:
+- Autocompletação de código: o IntelliJ IDEA pode sugerir automaticamente palavras e sintaxes com base no contexto do código atual.
+- Refatoração: o IntelliJ IDEA pode ajudá-lo a refatorar seu código sem quebrar o que já funciona.
+- Depuração: o IntelliJ IDEA pode ajudá-lo a depurar seu código passo a passo, vendo os valores das variáveis ​​e os fluxos de controle.
+- Suporte a várias linguagens: o IntelliJ IDEA oferece suporte a uma ampla gama de linguagens de programação, incluindo Java, Kotlin, Python, JavaScript, PHP e C++.
+- Personalização: o IntelliJ IDEA pode ser personalizado para atender às suas necessidades específicas.
+
+Kotlin:
+Kotlin é uma linguagem de programação multiplataforma, orientada a objetos e funcional, concisa e estaticamente tipada, desenvolvida pela JetBrains em 2011, que compila para a Máquina virtual Java e que também pode ser traduzida para a linguagem JavaScript e compilada para código nativo.
+Kotlin é uma linguagem de programação moderna que foi projetada para ser fácil de aprender e usar. Ela é compatível com Java, o que significa que você pode usar bibliotecas e código Java existentes em seus projetos Kotlin.
+Kotlin é uma linguagem poderosa que pode ser usada para desenvolver uma ampla gama de aplicativos, incluindo aplicativos Android, aplicativos da web e aplicativos de desktop.
+Aqui estão alguns dos benefícios do Kotlin:
+- Kotlin é uma linguagem de programação concisa, o que significa que você pode escrever código mais curto e fácil de entender.
+- Kotlin é uma linguagem de programação segura, o que significa que é menos provável que ela contenha erros.
+- Kotlin é uma linguagem de programação rápida, o que significa que seus aplicativos serão executados mais rápido.
+- Kotlin é uma linguagem de programação compatível com Java, o que significa que você pode usar bibliotecas e código Java existentes em seus projetos Kotlin.
+
+Métodos HTTP:
+GET - Busca as informações
+POST - Adiciona informações
+PUT - Adiciona todas as informações enviadas, independentemente de já existirem ou não no BD.
+PATH - 
+DELETE - 
+
+É sempre importante verificar os logs do IntelliJ (ou outra IDE) para confirmar o que foi feito no Postman.
+
+GET com parâmetros: Obtém informações baseadas em parâmetros específicos, que podem ser enviados direto no caminho do servidor (path) quando no Header do Postman. Ex.: http://localhost:8080/cliente/1, sendo o "1" o ID desejado para o método.
+
+GET com Autorizações:
+Utilizado para Endpoints autorizados. "http://localhost:8080/risco/{id}".
+- Aba "Authorization": Lista de autorizações, dentre elas, o Basic Auth. O usuário e password da API em questão é "Username: aluno" e "Password: senha".
+- Aba "Headers": Informa os parâmetros que foram no cabeçalho da autorização da requisição. 
+
+Executando várias requisições de uma vez no Postman: Clicar em "ooo" na Collection desejada e "Run Collection".
+
+Variáveis do Postman:
+- Variáveis Globais;
+- Variáveis das Collections.
+Podemos definir variáveis globais que podem ser utilizadas para realizar os métodos em qualquer Collection:
+- Variáveis para URL padrão;
+- Variáveis para Usuário padrão;
+- Variáveis para Passwords; etc.
+Utilizando variáveis globais, podemos economizar tempo quando da realização dos testes no Postman, uma vez que, ao invés de escrevermos todas as vezes as mesmas URL, Usuário, Password, etc., podemos chamar a variável global.
+Outra questão importante é que, ao criarmos variáveis globais de Usuário e Senha, evitamos escrever essas informações diretamente nos campos de Autenticação, aumentando a segurança dos dados do que está sendo testado.
+Para criar uma Variável Global no Postman, devemos acessar "Environments" no menu à esquerda e, depois, "Globals". Nos campos, colocar:
+- Variable: O nome que você quer para a variável;
+- Type: Pode ser Default ou Secret;
+- Initial value e Current value: Colocar o valor da variável como, por exemplo, uma URL específica, um usuário, uma senha, etc..
+Podemos, também, criar variáveis exclusivas para cada coleção. Para tal, basta selecionar a Collection (ou criar uma nova), selecionar o campo Variables e defini-las.
+Para selecionarmos a variável desejada, devemos digitar "{{". Assim, abrirá uma lista com as variáveis disponíveis. As variáveis devem estar entre colchetes duplos "{{NomeDaVariavel}}".
+
+Postman Console: ALT+CTRL+C.
+
+Postman Tests: A sintaxe abaixo cria um teste para verificar o status e o tempo de resposta do servidor testado. No caso, irá verificar se o status é 200 (OK) e se a resposta foi dada em menos de 400 milissegundos:
+ 
+pm.test('Nome do Teste', function () {
+	pm.response.to.have.status(200);
+	pm.expect(pm.response.responseTime).to.be.below(400);
+})
